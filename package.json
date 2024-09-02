@@ -1,0 +1,22 @@
+{
+  "name": "react-core",
+  "version": "1.0.0",
+  "description": "React core",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lokesh396/React-Core.git"
+  },
+  "author": "C Lokesh Kumar Reddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lokesh396/React-Core/issues"
+  },
+  "homepage": "https://github.com/Lokesh396/React-Core#readme",
+  "dependencies": {
+    "parcel": "^2.12.0"
+  }
+}
