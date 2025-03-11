@@ -1,3 +1,45 @@
-#heading{
-    color: red;
+.logo-container .logo{
+    width: 70px;
+}
+
+.header{
+    border: 1px solid black;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-items ul{
+    display: flex;
+    gap: 20px;
+}
+.nav-items ul li{
+    list-style: none;
+    font-size: 24px;
+}
+
+.res-container{
+
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.res-card{
+    padding: 10px;
+}
+
+.res-card:hover {
+    border: 1px solid black
+}
+
+.res-container .res-card{
+    width: 200px;
+    height: fit-content;
+}
+.res-card img{
+    width: 100%;
+
 }
