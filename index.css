@@ -59,3 +59,14 @@
     height: 400px;
     background-color: #f0f0f0;
 }
+
+.login-btn{
+    padding: 20px;
+    cursor: pointer;
+}
+
+.filter{
+    display: flex;
+    margin: 20px 0;
+    gap: 20px;
+}
