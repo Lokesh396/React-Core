@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import RestaruantCard from "./RestarauntCard";
-import { resData } from "../utils/mockData";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
-  const [restaruantList, setRestarauntList] = useState(resData);
+  const [restaruantList, setRestarauntList] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -44,6 +44,9 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  if (restaruantList.length === 0) {
+    return <Shimmer />;
+  }
   return (
     <div className="body">
       <div className="search">search</div>
