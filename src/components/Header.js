@@ -7,7 +7,7 @@ const Header = () => {
   const [authenticated, setAuthenticated] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="shadow bg-white sticky top-0">
+    <div className="shadow bg-white sticky top-0 z-10">
       <div className="flex justify-between items-center p-5  w-4/5 mx-auto">
         <div className="flex gap-3 items-center">
           <img className="w-15" src={LOGO_URL} alt="logo" />
