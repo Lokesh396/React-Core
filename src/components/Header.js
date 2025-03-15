@@ -7,13 +7,14 @@ const Header = () => {
   const [authenticated, setAuthenticated] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <>
-      <div className="header">
-        <div className="logo-container">
-          <img className="logo" src={LOGO_URL} alt="logo" />
+    <div className="shadow bg-white sticky top-0">
+      <div className="flex justify-between items-center p-5  w-4/5 mx-auto">
+        <div className="flex gap-3 items-center">
+          <img className="w-15" src={LOGO_URL} alt="logo" />
+          <h1 className="text-orange-500 font-bold text-2xl">ES Foods</h1>
         </div>
-        <div className="nav-items">
-          <ul>
+        <div>
+          <ul className="flex gap-6">
             <li>onlineStatus: {onlineStatus ? "✅" : "🔴"}</li>
             <li>
               <Link to="/">Home</Link>
@@ -36,7 +37,7 @@ const Header = () => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
