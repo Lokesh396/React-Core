@@ -1,56 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import RestaruantCard from "./RestarauntCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+import useRestaranutList from "../utils/hooks/useRestaranutList";
 
 const Body = () => {
-  const [restaruantList, setRestarauntList] = useState([]);
+  const restaruantList = useRestaranutList();
   const [filteredRestaraunts, setFilteredRestaraunts] = useState([]);
   const [SearchText, setSearchText] = useState("");
-  const fetchData = async () => {
-    try {
-      let body = {
-        sortAttribute: "relevance",
-        isFiltered: false,
-        queryId: "seo-data-9a0f3712-f10d-4913-83b8-1eed2624ce05",
-        seoParams: {
-          apiName: "CityPage",
-          brandId: "",
-          seoUrl: "www.swiggy.com/city/hyderabad/order-online",
-          pageType: "CITY_PAGE",
-          businessLine: "FOOD",
-        },
-        widgetOffset: {
-          NewListingView_category_bar_chicletranking_TwoRows: "",
-          NewListingView_category_bar_chicletranking_TwoRows_Rendition: "",
-          Restaurant_Group_WebView_SEO_PB_Theme: "",
-          collectionV5RestaurantListWidget_SimRestoRelevance_food_seo: "11",
-          inlineFacetFilter: "",
-          restaurantCountWidget: "",
-        },
-        nextOffset: "CJY7ELQ4KICw6OOAnKGiWDDUEDgC",
-      };
-      let jsonData = await fetch(
-        "https://www.swiggy.com/api/seo/getListing?lat=17.425938120298223&lng=78.39342287825744&apiV2=true",
-        { method: "POST", body: JSON.stringify(body) }
-      );
-      jsonData = await jsonData.json();
-      setRestarauntList(
-        jsonData.data?.success?.cards?.[0]?.card?.card?.gridElements
-          ?.infoWithStyle?.restaurants || []
-      );
-      setFilteredRestaraunts(
-        jsonData.data?.success?.cards?.[0]?.card?.card?.gridElements
-          ?.infoWithStyle?.restaurants || []
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-  return restaruantList.length === 0 ? (
+
+  const onlineStatus = useOnlineStatus();
+  console.log(onlineStatus);
+
+  return onlineStatus === false ? (
+    <h1>Oops! Please check your internet connection</h1>
+  ) : restaruantList.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -90,11 +55,17 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {filteredRestaraunts.map((res) => (
-          <Link to={"/restaraunt/" + res.info.id} key={res.info.id}>
-            <RestaruantCard resData={res} />
-          </Link>
-        ))}
+        {filteredRestaraunts.length > 0
+          ? filteredRestaraunts.map((res) => (
+              <Link to={"/restaraunt/" + res.info.id} key={res.info.id}>
+                <RestaruantCard resData={res} />
+              </Link>
+            ))
+          : restaruantList.map((res) => (
+              <Link to={"/restaraunt/" + res.info.id} key={res.info.id}>
+                <RestaruantCard resData={res} />
+              </Link>
+            ))}
       </div>
     </div>
   );
